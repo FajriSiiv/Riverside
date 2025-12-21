@@ -46,7 +46,7 @@ const hasMoreRelations = computed(() => flatRelations.value.length > 20)
                 </div>
 
                 <div
-                    class="absolute bottom-0 left-0 right-0 h-[1.5px] bg-gradient-to-r from-emerald-500/10 via-emerald-500/90 to-emerald-500/10 z-20">
+                    class="absolute bottom-0 left-0 right-0 h-[1.5px] bg-linear-to-r from-emerald-500/10 via-emerald-500/90 to-emerald-500/10 z-20">
                 </div>
             </div>
 
