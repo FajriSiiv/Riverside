@@ -16,10 +16,7 @@ export default defineNuxtConfig({
       middlewareMode: false,
     },
   },
-  modules: [
-    '@nuxt/fonts',
-    '@nuxt/ui',
-  ],
+  modules: ['@nuxt/fonts', '@nuxt/ui', '@nuxt/icon'],
   nitro: {
     prerender: {
       ignore: ['/sw.js', '/__nuxt_error']
@@ -28,4 +25,7 @@ export default defineNuxtConfig({
       '/sw.js': { cache: false }
     }
   },
+  icon: {
+    componentName: 'NuxtIcon'
+  }
 })

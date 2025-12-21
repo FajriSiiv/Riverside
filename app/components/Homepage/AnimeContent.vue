@@ -36,7 +36,7 @@ const handleTabChange = (index) => {
             <p class="text-accent animate-pulse">Loading Anime...</p>
         </div>
         <div v-else class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3">
-            <div v-for="anime in animeList" :key="anime.id">
+            <div v-for="anime in animeList.slice(0, 20)" :key="anime.id">
                 <div class="relative p-2">
                     <img :src="anime.imageUrl" class="w-full h-[250px] object-cover rounded-sm" draggable="false" />
                     <div class="pt-2">
