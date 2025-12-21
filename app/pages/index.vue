@@ -4,7 +4,7 @@ const { data: airingTopAnime, pending: airingTopAnimePending, error: airingTopAn
 
 
 <template>
-    <div class="grid grid-cols-1 md:grid-cols-6 lg:grid-cols-12 gap-8 px-14 pt-10">
+    <div class="grid grid-cols-1 md:grid-cols-6 lg:grid-cols-12 gap-8  pt-10">
         <div class="col-span-12 md:col-span-6 lg:col-span-8">
             <div class="w-full h-[350px] relative rounded-md overflow-hidden">
                 <UCarousel :items="airingTopAnime" v-slot="{ item }" :autoplay="{ delay: 5000 }" fade
@@ -46,4 +46,5 @@ const { data: airingTopAnime, pending: airingTopAnimePending, error: airingTopAn
         </div>
 
     </div>
+    <HomepageFooter />
 </template>
