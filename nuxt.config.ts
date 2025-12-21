@@ -7,11 +7,15 @@ export default defineNuxtConfig({
   vite: {
     plugins: [tailwindcss()],
     server: {
-      hmr: {
-        protocol: "http",
-        host: 'localhost',
-        clientPort: 3000,
-        port: 3000,
+     hmr: {
+        // Ini tidak mematikan HMR, tapi mencegah error koneksi 
+        // yang sering memicu update rute berulang di Windows
+        overlay: false 
+      },
+      watch: {
+        // Jika pakai Windows, kadang perlu menaikkan interval agar tidak terlalu sensitif
+        usePolling: true,
+        interval: 100
       },
       middlewareMode: false,
     },

@@ -37,13 +37,20 @@ const handleTabChange = (index) => {
         </div>
         <div v-else class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3">
             <div v-for="anime in animeList.slice(0, 20)" :key="anime.id">
-                <div class="relative p-2">
-                    <img :src="anime.imageUrl" class="w-full h-[250px] object-cover rounded-sm" draggable="false" />
-                    <div class="pt-2">
-                        <p class="text-white font-semibold truncate text-sm">{{ anime.title }}</p>
-                        <p class="text-yellow-400 text-xs">⭐ {{ anime.score }}</p>
+                <UTooltip :open-delay="400" class="block w-full" :popper="{ placement: 'left', arrow: true, }" :ui="{
+                    content: 'p-0 w-min-0 min-h-0 ring-0 shadow-none overflow-visible',
+                }">
+                    <div class="p-2 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-md transition-colors">
+                        <img :src="anime.imageUrl" class="w-full h-[250px] object-cover rounded-sm" draggable="false">
+                        <div class="mt-3">
+                            <p class="text-sm font-semibold">{{ anime.title }}</p>
+                            <p class="text-xs">⭐ {{ anime.score }}</p>
+                        </div>
                     </div>
-                </div>
+                    <template #content>
+                        <BaseCardTooltip :item="anime" />
+                    </template>
+                </UTooltip>
             </div>
 
         </div>

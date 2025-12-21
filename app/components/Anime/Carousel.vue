@@ -14,8 +14,9 @@ defineProps({
         required: true
     },
     error: {
-        type: Object,
-        required: true
+        type: [Object, null],
+        required: false,
+        default: null
     }
 })
 </script>
@@ -38,11 +39,13 @@ defineProps({
                 container: 'ms-0'
             }">
             <div class="relative p-2">
-                <img :src="item.imageUrl" class="w-full h-[250px] object-cover rounded-sm" draggable="false" />
-                <div class="pt-2">
-                    <p class="text-white font-semibold truncate text-sm">{{ item.title }}</p>
-                    <p class="text-yellow-400 text-xs">⭐ {{ item.score }}</p>
-                </div>
+                <NuxtLink :to="`/anime/${item.id}`">
+                    <img :src="item.imageUrl" class="w-full h-[250px] object-cover rounded-sm" draggable="false" />
+                    <div class="pt-2">
+                        <p class="text-white font-semibold truncate text-sm">{{ item.title }}</p>
+                        <p class="text-yellow-400 text-xs">⭐ {{ item.score }}</p>
+                    </div>
+                </NuxtLink>
             </div>
         </UCarousel>
     </div>
