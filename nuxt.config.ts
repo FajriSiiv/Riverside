@@ -1,6 +1,10 @@
 import tailwindcss from "@tailwindcss/vite";
 
 export default defineNuxtConfig({
+  app:{
+    pageTransition: false,
+    layoutTransition: false
+  },
   devtools: { enabled: false },
   compatibilityDate: '2025-07-15',
   css: ['./app/assets/css/main.css'],
@@ -20,7 +24,7 @@ export default defineNuxtConfig({
       middlewareMode: false,
     },
   },
-  modules: ['@nuxt/fonts', '@nuxt/ui', '@nuxt/icon'],
+  modules: ['@nuxt/fonts', '@nuxt/ui', '@nuxt/icon','motion-v/nuxt'],
   nitro: {
     prerender: {
       ignore: ['/sw.js', '/__nuxt_error']

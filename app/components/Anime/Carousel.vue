@@ -31,14 +31,14 @@ defineProps({
         <div v-else-if="error" class="text-red-500 text-center">
             Error: {{ error.message }}
         </div>
-        <UCarousel v-else :items="items" v-slot="{ item }" loop :autoplay="{ delay: 3000 }" wheel-gestures
+        <UCarousel v-else :items="items" v-slot="{ item }" loop :autoplay="{ delay: 1500 }" wheel-gestures
             :prev="{ variant: 'solid' }" :next="{ variant: 'solid' }" :ui="{
                 item: 'basis-[60%] sm:basis-1/2 md:basis-1/2 lg:basis-1/5 ps-0',
                 prev: 'sm:start-4',
                 next: 'sm:end-4',
                 container: 'ms-0'
-            }">
-            <div class="relative p-2">
+            }" class="">
+            <div class="relative p-2 ">
                 <NuxtLink :to="`/anime/${item.id}`">
                     <img :src="item.imageUrl" class="w-full h-[250px] object-cover rounded-sm" draggable="false" />
                     <div class="pt-2">

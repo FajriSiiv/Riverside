@@ -4,9 +4,9 @@ const { data: airingTopAnime, pending: airingTopAnimePending, error: airingTopAn
 
 
 <template>
-    <div class="grid grid-cols-1 md:grid-cols-6 lg:grid-cols-12 gap-8  pt-10  px-24">
+    <div class="grid grid-cols-1 md:grid-cols-6 lg:grid-cols-12 gap-8 pt-10">
         <div class="col-span-12 md:col-span-6 lg:col-span-8">
-            <div class="w-full h-[350px] relative rounded-md overflow-hidden">
+            <div class="w-[90%] md:w-full h-[350px] relative rounded-md overflow-hidden">
                 <UCarousel :items="airingTopAnime" v-slot="{ item }" :autoplay="{ delay: 5000 }" fade
                     class="w-full h-[350px]  relative" :ui="{
                         item: 'basis-full',
@@ -17,16 +17,27 @@ const { data: airingTopAnime, pending: airingTopAnimePending, error: airingTopAn
                     </div>
                     <img :src="item.imageUrl" alt="anime"
                         class="w-full h-full object-cover object-[50%_30%] absolute left-0 top-0 blur-xs">
-                    <div class="p-10 relative z-10 flex flex-row gap-5 h-[350px]">
-                        <img :src="item.imageUrl" alt="anime" class="w-[150px] h-[250px] object-cover rounded-md">
+                    <div class="p-1.5 sm:p-4 lg:p-10 relative z-10 flex flex-col sm:flex-row gap-5 h-[350px]">
+                        <div class="flex flex-row gap-2">
+                            <img :src="item.imageUrl" alt="anime"
+                                class=" w-[100px] sm:w-[150px] h-[200px] sm:h-[250px] object-cover rounded-md">
+                            <div class="gap-2 flex flex-col sm:hidden flex-wrap">
+                                <p class="text-white font-semibold text-lg md:text-2xl">{{ item.title }}</p>
+                                <div class="flex flex-row gap-2 flex-wrap">
+                                    <p v-for="genre in item.genres" :key="genre"
+                                        class="text-xs bg-accent/60 px-2 py-1 rounded-full text-white h-[27px]">
+                                        {{ genre }}</p>
+                                </div>
+                            </div>
+                        </div>
                         <div class="flex flex-col gap-1.5 justify-end mb-2 font-poppins">
-                            <div class="flex gap-2">
+                            <div class="gap-2 sm:flex hidden">
                                 <p v-for="genre in item.genres" :key="genre"
                                     class="text-xs bg-accent/60 px-2 py-1 rounded-full text-white ">
                                     {{ genre }}</p>
                             </div>
-                            <p class="text-white font-semibold text-2xl">{{ item.title }}</p>
-                            <p class="text-sm text-gray-300/70">{{ item.description.slice(0, 100) }}
+                            <p class="hidden md:block text-white font-semibold text-lg md:text-2xl">{{ item.title }}</p>
+                            <p class="text-xs md:text-sm text-gray-300/70">{{ item.description.slice(0, 100) }}
                             </p>
                         </div>
                     </div>
@@ -45,5 +56,4 @@ const { data: airingTopAnime, pending: airingTopAnimePending, error: airingTopAn
         </div>
 
     </div>
-    <HomepageFooter />
 </template>

@@ -54,7 +54,7 @@ const footerData = {
 <template>
     <footer
         class="mt-10 pt-20 pb-20 relative before:absolute before:h-[1.5px] before:w-full  before:z-1 before:top-0 before:left-0 before:right-0 before:bg-linear-to-r before:from-gray-500/10 before:via-gray-500/90 before:to-gray-500/10">
-        <div class="w-full min-h-[150px] bg-primary  grid grid-cols-1 md:grid-cols-2 pb-20 px-24">
+        <div class="w-full min-h-[150px] bg-primary grid grid-cols-1 md:grid-cols-2 pb-20 xl:px-24 gap-10 md:gap-0">
             <div class="flex flex-col justify-between gap-5">
                 <p class="text-white font-semibold text-2xl">NuxtAnime</p>
                 <div class="flex flex-row gap-4">
@@ -65,7 +65,7 @@ const footerData = {
 
                 </div>
             </div>
-            <div class="flex flex-row justify-evenly">
+            <div class="flex flex-col sm:flex-row justify-start gap-5 md:gap-10 lg:gap-0 lg:justify-evenly">
                 <ul class="flex flex-col gap-2 text-white/50 text-sm">
                     <p class="font-semibold text-white">Sosial Media</p>
                     <li class="hover:text-discord cursor-pointer transition-colors"
@@ -83,6 +83,6 @@ const footerData = {
                 </ul>
             </div>
         </div>
-        <p class="text-white/50 text-center">© 2025 NuxtAnime. All rights reserved.</p>
+        <p class="text-white/50 text-center text-sm md:text-base">© 2025 NuxtAnime. All rights reserved.</p>
     </footer>
 </template>

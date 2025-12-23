@@ -1,8 +1,27 @@
 <script setup>
 const { anime } = useRoute().params
-const { data: animeDetail, pending: animeDetailPending, error: animeDetailError } = await useFetch(`/api/anime/detail/${anime}`)
 
-const { data: animeCharacters, pending: animeCharactersPending, error: animeCharactersError } = await useFetch(`/api/anime/characters/${anime}`)
+const { data: animeDetail, pending: animeDetailPending, error: animeDetailError } = useFetch(`/api/anime/detail/${anime}`, {
+    lazy: true,
+    server: true
+})
+
+// 2. Ini juga jangan di-await
+const { data: animeCharacters, pending: animeCharactersPending, error: animeCharactersError } = useFetch(`/api/anime/characters/${anime}`, {
+    lazy: true,
+    server: false
+})
+
+const { data: animeStaff, pending: animeStaffPending, error: animeStaffError, } = useFetch(`/api/anime/staff/${anime}`, {
+    lazy: true,
+    server: false
+})
+
+const searchOriginalCreator = computed(() => {
+    if (!animeStaff.value) return []
+    return animeStaff.value.filter((staff) => staff.positions[0] === 'Original Creator')
+})
+
 
 
 const flatRelations = computed(() => {
@@ -22,24 +41,32 @@ const flatRelations = computed(() => {
 })
 
 
+
 const displayedRelations = computed(() => flatRelations.value.slice(0, 20))
 const hasMoreRelations = computed(() => flatRelations.value.length > 20)
+
+
 
 </script>
 
 <template>
+
     <div v-if="!animeDetail && animeDetailPending" class="flex justify-center items-center h-64">
         <p class="text-accent animate-pulse">Loading Anime...</p>
     </div>
-    <div v-else-if="animeDetailError" class="text-red-500 text-center">
-        <p>
-            Error: Tidak ada detail anime di page ini
+    <div v-else-if="animeDetailError"
+        class="text-red-500 text-center h-[80vh] max-h-[600px] flex justify-center items-center flex-col gap-5">
+        <p class="text-sm md:text-lg">
+            Tidak ada detail anime di page ini
         </p>
+        <NuxtLink to="/" class="text-accent hover:underline">
+            Kembali ke halaman anime
+        </NuxtLink>
     </div>
     <div v-else-if="animeDetail">
         <div class="w-full relative h-full">
             <!-- Background Header -->
-            <div class="w-full relative h-[300px] overflow-hidden  bg-cover bg-no-repeat bg-center"
+            <div class="w-full relative h-[300px] overflow-hidden  bg-cover bg-no-repeat bg-center hidden md:block"
                 :style="!animeDetail?.images?.jpg?.large_image_url ? { backgroundImage: 'url(/images/hero-bg.jpg)' } : { backgroundImage: 'url(' + animeDetail.images.jpg.large_image_url + ')' }">
 
                 <div class="absolute inset-0 bg-linear-to-t from-black/80 to-black/10 z-10">
@@ -51,12 +78,12 @@ const hasMoreRelations = computed(() => flatRelations.value.length > 20)
             </div>
 
             <!-- Info Sedikit Anime dan Sysnopsis -->
-            <div class="bg-secondary w-full h-fit z-20 px-24">
+            <div class="bg-secondary w-full h-fit z-20 xl:px-24 rounded-md">
                 <div class="w-full grid grid-cols-12 gap-4 py-5">
                     <div class="md:col-span-5 lg:col-span-3 col-span-12">
-                        <div class="relative z-20 -mt-40  overflow-hidden  flex flex-col gap-2">
+                        <div class="relative z-20 mt-0 md:-mt-40  overflow-hidden flex flex-col gap-2 px-5 md:px-0">
                             <img :src="animeDetail.images.jpg.large_image_url" alt="anime"
-                                class="min-w-[250px] w-full max-h-[400px] h-full object-cover object-bottom rounded-md">
+                                class="min-w-[250px] w-fit mx-auto max-h-[600px] md:max-h-[400px] h-full object-contain md:object-cover object-bottom rounded-md">
 
                             <div
                                 class="flex flex-row gap-2 justify-center items-center w-full rounded-md bg-sky-600/80 hover:bg-sky-400/60 py-2 cursor-pointer group">
@@ -65,7 +92,7 @@ const hasMoreRelations = computed(() => flatRelations.value.length > 20)
                             </div>
                         </div>
                     </div>
-                    <div class="md:col-span-7 lg:col-span-9 col-span-12 pt-5 max-w-[900px]">
+                    <div class="md:col-span-7 lg:col-span-9 col-span-12  md:pt-5 max-w-[900px]rounded-md px-5 md:px-0">
                         <p class="text-semibold text-lg">{{ animeDetail.title }}</p>
                         <p class="text-sm text-gray-300/70">{{ animeDetail.synopsis.slice(0, 500) }}{{
                             animeDetail.synopsis.length > 500 ? '...' : '' }}</p>
@@ -75,7 +102,7 @@ const hasMoreRelations = computed(() => flatRelations.value.length > 20)
             </div>
 
             <!-- Informasi Anime -->
-            <div class="bg-primary w-full h-fit pt-5 pb-10 px-24">
+            <div class="bg-primary w-full h-fit pt-2 md:pt-5 pb-10 xl:px-24">
                 <div class="grid grid-cols-12 gap-4">
                     <div class="col-span-12 md:col-span-5 lg:col-span-3 flex flex-col gap-2">
                         <div class="bg-secondary rounded-md text-center py-2 grid grid-cols-12 gap-2 px-3">
@@ -186,7 +213,7 @@ const hasMoreRelations = computed(() => flatRelations.value.length > 20)
 
                         <div class="flex flex-col gap-3">
                             <p>Relations</p>
-                            <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-2">
+                            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-2">
                                 <ClientOnly>
 
                                     <UTooltip v-for="relation in displayedRelations" :key="relation.mal_id" :content="{
@@ -220,7 +247,7 @@ const hasMoreRelations = computed(() => flatRelations.value.length > 20)
 
                         </div>
 
-                        <div class="flex flex-col gap-3">
+                        <div class="flex flex-col gap-3 mt-3">
                             <p>Characters</p>
                             <div v-if="animeCharactersPending">
                                 <p>Loading...</p>
@@ -228,11 +255,45 @@ const hasMoreRelations = computed(() => flatRelations.value.length > 20)
                             <div v-else-if="animeCharactersError">
                                 <p>Error: {{ animeCharactersError }}</p>
                             </div>
-                            <div v-else-if="animeCharacters" class="grid grid-cols-5 gap-2">
+                            <div v-else-if="animeCharacters"
+                                class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2">
                                 <div v-for="character in animeCharacters.slice(0, 10)" :key="character.mal_id"
-                                    class="flex flex-col gap-2 p-2 bg-secondary rounded-md">
-                                    <p>{{ character.name }}</p>
-                                    <p>{{ character.role }}</p>
+                                    class="flex flex-row gap-2 bg-secondary rounded-md text-xs justify-between">
+                                    <div class="p-2 flex flex-col gap-2 justify-between">
+                                        <p class="text-gray-300/70">{{ character.role }}</p>
+                                        <div class="">
+                                            <p>{{ character.character.name }}</p>
+                                            <p>{{ character.voice_actors[0] ? character.voice_actors[0]?.person?.name :
+                                                'N/A' }}</p>
+                                        </div>
+                                    </div>
+                                    <div class="relative w-full h-full overflow-hidden">
+                                        <img :src="character.character.images.jpg.image_url"
+                                            :alt="character.character.name"
+                                            class="w-20 h-full object-cover absolute top-0 right-0 rounded-md object-center">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="flex flex-col gap-3 mt-3">
+                            <p>Original Creator</p>
+                            <div v-if="animeStaffPending">
+                                <p>Loading...</p>
+                            </div>
+                            <div v-else-if="animeStaffError">
+                                <p>Error: {{ animeStaffError }}</p>
+                            </div>
+                            <div v-else-if="animeStaff" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2">
+                                <div v-for="staff in searchOriginalCreator" :key="staff.mal_id"
+                                    class="flex flex-row gap-2 bg-secondary rounded-md text-xs justify-between md:h-20 h-26">
+                                    <div class="p-2 flex flex-col gap-2 justify-between">
+                                        <p>{{ staff.person.name }}</p>
+                                    </div>
+                                    <div class="relative w-full h-full overflow-hidden">
+                                        <img :src="staff.person.images.jpg.image_url" :alt="staff.person.name"
+                                            class="w-20 h-full object-cover absolute top-0 right-0 rounded-md object-top">
+                                    </div>
                                 </div>
                             </div>
                         </div>
