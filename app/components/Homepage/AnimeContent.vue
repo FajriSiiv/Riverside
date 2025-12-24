@@ -41,12 +41,14 @@ const handleTabChange = (index) => {
                     content: 'p-0 w-min-0 min-h-0 ring-0 shadow-none overflow-visible',
                 }">
                     <div class="p-2 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-md transition-colors">
-                        <img :src="anime.imageUrl" class="w-[90%] md:w-full h-[250px] object-cover rounded-sm"
-                            draggable="false">
-                        <div class="mt-3">
-                            <p class="text-sm font-semibold">{{ anime.title }}</p>
-                            <p class="text-xs">⭐ {{ anime.score }}</p>
-                        </div>
+                        <NuxtLink :to="`/anime/${anime.id}`">
+                            <img :src="anime.imageUrl" class="w-[90%] md:w-full h-[250px] object-cover rounded-sm"
+                                draggable="false">
+                            <div class="mt-3">
+                                <p class="text-sm font-semibold">{{ anime.title }}</p>
+                                <p class="text-xs">⭐ {{ anime.score }}</p>
+                            </div>
+                        </NuxtLink>
                     </div>
                     <template #content>
                         <BaseCardTooltip :item="anime" />
