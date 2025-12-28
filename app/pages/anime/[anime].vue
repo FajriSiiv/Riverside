@@ -6,7 +6,6 @@ const { data: animeDetail, pending: animeDetailPending, error: animeDetailError 
     server: true
 })
 
-// 2. Ini juga jangan di-await
 const { data: animeCharacters, pending: animeCharactersPending, error: animeCharactersError } = useFetch(`/api/anime/characters/${anime}`, {
     lazy: true,
     server: false
@@ -82,7 +81,7 @@ const hasMoreRelations = computed(() => flatRelations.value.length > 20)
                 <div class="w-full grid grid-cols-12 gap-4 py-5">
                     <div class="md:col-span-5 lg:col-span-3 col-span-12">
                         <div class="relative z-20 mt-0 md:-mt-40  overflow-hidden flex flex-col gap-2 px-5 md:px-0">
-                            <img :src="animeDetail.images.jpg.large_image_url" alt="anime"
+                            <img :src="animeDetail.images.jpg.large_image_url" :alt="`${animeDetail.title}-anime-image`"
                                 class="min-w-[250px] w-fit mx-auto max-h-[600px] md:max-h-[400px] h-full object-contain md:object-cover object-bottom rounded-md">
 
                             <div
@@ -269,7 +268,7 @@ const hasMoreRelations = computed(() => flatRelations.value.length > 20)
                                     </div>
                                     <div class="relative w-full h-full overflow-hidden">
                                         <img :src="character.character.images.jpg.image_url"
-                                            :alt="character.character.name"
+                                            :alt="`${character.character.name}-anime-image-charac`"
                                             class="w-20 h-full object-cover absolute top-0 right-0 rounded-md object-center">
                                     </div>
                                 </div>
@@ -291,7 +290,8 @@ const hasMoreRelations = computed(() => flatRelations.value.length > 20)
                                         <p>{{ staff.person.name }}</p>
                                     </div>
                                     <div class="relative w-full h-full overflow-hidden">
-                                        <img :src="staff.person.images.jpg.image_url" :alt="staff.person.name"
+                                        <img :src="staff.person.images.jpg.image_url"
+                                            :alt="`${staff.person.name}-anime-image-staff`"
                                             class="w-20 h-full object-cover absolute top-0 right-0 rounded-md object-top">
                                     </div>
                                 </div>

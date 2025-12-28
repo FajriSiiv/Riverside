@@ -1,38 +1,56 @@
 import tailwindcss from "@tailwindcss/vite";
 
 export default defineNuxtConfig({
-  app:{
+  app: {
     pageTransition: false,
-    layoutTransition: false
+    layoutTransition: false,
+    head: {
+      title: 'NuxtAnime - Portal Anime Terlengkap', 
+      meta: [
+        { charset: 'utf-8' },
+        { name: 'viewport', content: 'width=device-width, initial-scale=1' },
+        { 
+          name: 'description', 
+          content: 'Nonton dan jelajahi informasi anime terbaru hanya di NuxtAnime.' // WAJIB DIISI UNTUK SEO
+        },
+        { name: 'format-detection', content: 'telephone=no' }
+      ],
+      link: [
+        { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
+      ]
+    }
   },
-  devtools: { enabled: false },
-  compatibilityDate: '2025-07-15',
-  css: ['./app/assets/css/main.css'],
+  
+  css: ['tailwindcss/index.css', 
+    '@/assets/css/main.css'],
+
   vite: {
     plugins: [tailwindcss()],
     server: {
-     hmr: {
-        // Ini tidak mematikan HMR, tapi mencegah error koneksi 
-        // yang sering memicu update rute berulang di Windows
-        overlay: false 
-      },
+      hmr: { overlay: false },
       watch: {
-        // Jika pakai Windows, kadang perlu menaikkan interval agar tidak terlalu sensitif
         usePolling: true,
         interval: 100
       },
-      middlewareMode: false,
     },
   },
-  modules: ['@nuxt/fonts', '@nuxt/ui', '@nuxt/icon','motion-v/nuxt'],
+
+  modules: [
+    '@nuxt/fonts', 
+    '@nuxt/ui', 
+    '@nuxt/icon',
+    'motion-v/nuxt'
+  ],
+
+  compatibilityDate: '2025-07-15',
+
   nitro: {
     prerender: {
+      crawlLinks: true, // Tambahkan ini agar semua link di-crawl otomatis untuk SEO (SSG)
       ignore: ['/sw.js', '/__nuxt_error']
-    },
-    routeRules: {
-      '/sw.js': { cache: false }
     }
   },
+
   icon: {
     componentName: 'NuxtIcon'
   }

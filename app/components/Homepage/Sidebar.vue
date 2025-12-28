@@ -29,8 +29,9 @@ const { data: topAnimeList, pending: topAnimePending, error: topAnimeError } = a
                     content: 'p-0 h-0 min-h-0 ring-0 shadow-none overflow-visible'
                 }">
                     <div
-                        class="flex items-start justify-start flex-row gap-2 cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-800 rounded-md transition-colors">
-                        <img :src="item.imageUrl" :alt="item.title" class="w-[120px] h-[150px] object-cover rounded-sm">
+                        class="flex items-start justify-start flex-row gap-2 cursor-pointer hover:bg-gray-800 dark:hover:bg-gray-800 rounded-md transition-colors">
+                        <img :src="item.imageUrl" :alt="`${item.title}-anime-image`"
+                            class="w-[120px] h-[150px] object-cover rounded-sm">
                         <div class="mt-3">
                             <p class="text-sm font-semibold">{{ item.title }}</p>
                             <p class="text-xs">⭐ {{ item.score }}</p>

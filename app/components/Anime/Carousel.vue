@@ -40,7 +40,8 @@ defineProps({
             }" class="">
             <div class="relative p-2 ">
                 <NuxtLink :to="`/anime/${item.id}`">
-                    <img :src="item.imageUrl" class="w-full h-[250px] object-cover rounded-sm" draggable="false" />
+                    <img :src="item.imageUrl" class="w-full h-[250px] object-cover rounded-sm" draggable="false"
+                        :alt="`${item.title}-anime-image`" />
                     <div class="pt-2">
                         <p class="text-white font-semibold truncate text-sm">{{ item.title }}</p>
                         <p class="text-yellow-400 text-xs">⭐ {{ item.score }}</p>

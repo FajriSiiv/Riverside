@@ -1,4 +1,11 @@
-<script setup>
+<script setup lang="ts">
+useSeoMeta({
+  title: 'NuxtAnime',
+  ogTitle: 'NuxtAnime',
+  description: 'NuxtAnime - Watch anime online for free.',
+  ogDescription: 'NuxtAnime - Watch anime online for free.',
+})
+
 import { motion, AnimatePresence } from "motion-v"
 const { isLoading } = useLoadingIndicator() // Menangkap status navigasi Nuxt
 </script>

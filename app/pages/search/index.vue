@@ -47,8 +47,8 @@ const handleNextPage = () => {
             }">
                 <div class="p-2 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-md transition-colors">
                     <NuxtLink :to="`/anime/${anime.id}`">
-                        <img :src="anime.imageUrl" class="w-[90%] md:w-full h-[250px] object-cover rounded-sm"
-                            draggable="false">
+                        <img :src="anime.imageUrl" :alt="`${anime.title}-anime-image`"
+                            class="w-[90%] md:w-full h-[250px] object-cover rounded-sm" draggable="false">
                         <div class="mt-3">
                             <p class="text-sm font-semibold">{{ anime.title }}</p>
                             <p class="text-xs">⭐ {{ anime.score }}</p>

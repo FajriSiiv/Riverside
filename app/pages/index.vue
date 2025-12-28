@@ -18,11 +18,11 @@ const { data: airingTopAnime, pending: airingTopAnimePending, error: airingTopAn
                     <div
                         class="absolute bottom-0 left-0 top-0 right-0 z-10 bg-linear-to-t from-black/80 via-black/80 via-50% to-black/5 h-[350px]">
                     </div>
-                    <img :src="item.imageUrl" alt="anime"
+                    <img :src="item.imageUrl" :alt="`${item.title}-anime-image`"
                         class="w-full h-full object-cover object-[50%_30%] absolute left-0 top-0 blur-xs">
                     <div class="p-1.5 sm:p-4 lg:p-10 relative z-10 flex flex-col sm:flex-row gap-5 h-[350px]">
                         <div class="flex flex-row gap-2">
-                            <img :src="item.imageUrl" alt="anime"
+                            <img :src="item.imageUrl" :alt="`${item.title}-anime-image-small`"
                                 class=" w-[100px] sm:w-[150px] h-[200px] sm:h-[250px] object-cover rounded-md">
                             <div class="gap-2 flex flex-col sm:hidden flex-wrap">
                                 <p class="text-white font-semibold text-lg md:text-2xl">{{ item.title }}</p>
