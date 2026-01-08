@@ -1,32 +1,31 @@
 <script setup lang="ts">
 useSeoMeta({
-  title: 'NuxtAnime',
-  ogTitle: 'NuxtAnime',
-  description: 'NuxtAnime - Watch anime online for free.',
-  ogDescription: 'NuxtAnime - Watch anime online for free.',
-})
+  // Judul Utama
+  title: 'Riverside Golf Club | Championship Course in Bogor',
+  ogTitle: 'Riverside Golf Club - Golf in Perfect Harmony with Nature',
 
-import { motion, AnimatePresence } from "motion-v"
-const { isLoading } = useLoadingIndicator() // Menangkap status navigasi Nuxt
+  // Deskripsi (Gunakan kata kunci Greg Norman, Bogor, dan Championship Course)
+  description: 'Experience an 18-hole par 72 championship golf course designed by Greg Norman. Nestled along the Cikeas River in Bogor, Riverside offers world-class facilities and unmatched hospitality.',
+  ogDescription: 'Discover the stunning Greg Norman designed course at Riverside Golf Club, Bogor. Perfect harmony between nature and world-class golfing facilities.',
+
+  // Media Sosial & Gambar
+  ogImage: 'https://images.unsplash.com/photo-1587174486073-ae5e5cff23aa?q=80&w=1200', // Gunakan gambar terbaik Anda
+  twitterCard: 'summary_large_image',
+  twitterTitle: 'Riverside Golf Club',
+  twitterDescription: 'Experience world-class golf at our championship course in Bogor, Indonesia.',
+  twitterImage: 'https://images.unsplash.com/photo-1587174486073-ae5e5cff23aa?q=80&w=1200',
+
+  // Informasi Tambahan
+  author: 'Riverside Golf Club',
+  ogType: 'website',
+  ogUrl: 'https://www.riverside-golf.com', // Sesuaikan dengan domain Anda
+})
 </script>
 
 <template>
   <UApp>
-    <AnimatePresence>
-      <motion.div v-if="isLoading" initial="{ opacity: 0 }" animate="{ opacity: 1 }" exit="{ opacity: 0 }"
-        class="fixed inset-0 z-[9999] cursor-wait bg-primary/75 flex h-screen justify-center items-center backdrop-blur-[1px]"
-        @click.stop.prevent>
-        <p class="text-4xl ">Loading...</p>
-      </motion.div>
-    </AnimatePresence>
-
     <NuxtLayout>
-      <AnimatePresence mode="wait">
-        <motion.div :key="$route.fullPath" :initial="{ opacity: 0, y: 10 }" :animate="{ opacity: 1, y: 0 }"
-          :exit="{ opacity: 0, y: -10 }">
-          <NuxtPage />
-        </motion.div>
-      </AnimatePresence>
+      <NuxtPage />
     </NuxtLayout>
   </UApp>
 </template>
