@@ -56,7 +56,7 @@ const golf_images = [
                 item: 'basis-[95%] md:basis-[80%] lg:basis-[70%]'
             }" class=" mx-auto">
             <NuxtImg :src="item" class="rounded-lg h-[250px] md:h-[400px] lg:h-[600px] w-full object-cover"
-                :alt="'Golfing at Riverside Cikeas River' + index" />
+                :alt="'Golfing at Riverside Cikeas River'" />
         </UCarousel>
     </div>
 
