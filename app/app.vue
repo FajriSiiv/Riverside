@@ -1,24 +1,33 @@
 <script setup lang="ts">
 useSeoMeta({
-  // Judul Utama
-  title: 'Riverside Golf Club | Championship Course in Bogor',
-  ogTitle: 'Riverside Golf Club - Golf in Perfect Harmony with Nature',
+  // --- IDENTITAS UTAMA ---
+  title: 'Riverside Wine Golf Club | Championship Course in Bogor',
+  titleTemplate: (title) => title ? `${title} - Riverside Wine Golf Club` : 'Riverside Wine Golf Club',
+  description: 'Experience an 18-hole par 72 championship golf course designed by Greg Norman. Nestled along the Cikeas River in Bogor, Riverside offers world-class facilities.',
+  author: 'Riverside Wine Golf Club',
 
-  // Deskripsi (Gunakan kata kunci Greg Norman, Bogor, dan Championship Course)
-  description: 'Experience an 18-hole par 72 championship golf course designed by Greg Norman. Nestled along the Cikeas River in Bogor, Riverside offers world-class facilities and unmatched hospitality.',
+  // --- PENGATURAN TEKNIS SEO ---
+  robots: 'index, follow',
+  keywords: 'golf course bogor, riverside golf club, greg norman course, lapangan golf indonesia, golf bogor, championship golf course',
+
+  // --- OPEN GRAPH (Facebook, LinkedIn, WhatsApp) ---
+  ogType: 'website',
+  ogUrl: 'https://riverside-wine.vercel.app/',
+  ogSiteName: 'Riverside Wine Golf Club', // Nama Brand situs
+  ogLocale: 'en_US', // Bahasa konten (bisa diganti id_ID jika konten bahasa Indonesia)
+  ogTitle: 'Riverside Wine Golf Club - Wine in Perfect Harmony with Nature',
   ogDescription: 'Discover the stunning Greg Norman designed course at Riverside Golf Club, Bogor. Perfect harmony between nature and world-class golfing facilities.',
+  ogImage: 'https://images.unsplash.com/photo-1587174486073-ae5e5cff23aa?q=80&w=1200',
+  ogImageAlt: 'Scenic view of Riverside Golf Club course in Bogor',
 
-  // Media Sosial & Gambar
-  ogImage: 'https://images.unsplash.com/photo-1587174486073-ae5e5cff23aa?q=80&w=1200', // Gunakan gambar terbaik Anda
+  // --- TWITTER CARD ---
   twitterCard: 'summary_large_image',
-  twitterTitle: 'Riverside Golf Club',
-  twitterDescription: 'Experience world-class golf at our championship course in Bogor, Indonesia.',
+  twitterSite: '@riversidewine',
+  twitterCreator: '@riversidewine',
+  twitterTitle: 'Riverside Wine Golf Club | World-Class Golf in Bogor',
+  twitterDescription: 'Experience world-class golf at our championship course in Bogor, Indonesia. Designed by Greg Norman.',
   twitterImage: 'https://images.unsplash.com/photo-1587174486073-ae5e5cff23aa?q=80&w=1200',
 
-  // Informasi Tambahan
-  author: 'Riverside Golf Club',
-  ogType: 'website',
-  ogUrl: 'https://www.riverside-golf.com', // Sesuaikan dengan domain Anda
 })
 </script>
 
