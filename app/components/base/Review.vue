@@ -36,28 +36,33 @@ const playerGolfer = ref([
 <template>
     <UContainer>
         <div class="py-10">
-            <UCarousel v-slot="{ item }" :items="playerGolfer" :ui="{ item: 'w-full' }"
-                class="rounded-xl overflow-hidden" fade loop>
-                <div
-                    class="bg-linear-to-bl from-35% via-70% to-90% from-emerald-950 via-emerald-900 to-emerald-800 h-[600px] w-full grid grid-cols-12 p-4 relative overflow-hidden">
-                    <div class="col-span-5 w-full h-full">
+            <UCarousel v-slot="{ item }" :items="playerGolfer" :ui="{ item: 'w-full' }" class=" overflow-hidden w-full"
+                fade loop>
+
+                <div class="bg-linear-to-bl from-35% via-70% to-90% from-emerald-950 via-emerald-900 to-emerald-800 
+                 max-h-[700px] md:h-[600px] w-full 
+                 flex flex-col md:grid md:grid-cols-12 
+                 p-3 md:p-2 lg:p-4 relative overflow-hidden rounded-xl">
+                    <div class="w-full h-[300px] md:h-full md:col-span-5 shrink-0 overflow-hidden">
                         <NuxtImg :src="item.image_url" :alt="item.name"
-                            class="w-full h-full object-cover rounded-xl aspect-square" height="600" width="600" />
+                            class="w-full h-full object-cover object-[50%_20%] md:object-center rounded-xl shadow-lg "
+                            height="600" width="600" />
                     </div>
 
-                    <div class="col-span-7 flex flex-col justify-center p-12 lg:p-16 text-white relative">
-                        <blockquote class="text-2xl md:text-3xl font-medium leading-snug mb-8">
+                    <div class="flex flex-col justify-center p-6 md:p-12 lg:p-16 text-white md:col-span-7">
+
+                        <blockquote class="text-xl sm:text-2xl md:text-3xl font-medium leading-snug mb-8 italic">
                             "{{ item.caption_review }}"
                         </blockquote>
 
-                        <div class="mt-auto pt-6 flex items-center gap-4">
-                            <div>
-                                <h4 class="text-lg font-bold text-emerald-50">{{ item.name }}</h4>
-                                <span class="text-sm text-emerald-400">Golf Enthusiast</span>
+                        <div class="mt-4 md:mt-auto pt-6 border-t border-emerald-800/50 flex items-center gap-4">
+                            <div class="flex flex-col">
+                                <h4 class="text-lg md:text-xl font-bold text-emerald-50">{{ item.name }}</h4>
+                                <span class="text-sm md:text-base text-emerald-400 font-medium">Golf Enthusiast</span>
                             </div>
                         </div>
-
                     </div>
+
                 </div>
             </UCarousel>
         </div>

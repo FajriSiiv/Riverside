@@ -67,50 +67,59 @@ const handleManualClick = (index: number) => {
     <UContainer>
         <div class="py-10 text-gray-900">
             <TitleSection title="Our Facilities" />
-            <div class="flex justify-between items-end mb-8">
-                <h2 class="text-5xl max-w-[40%] font-medium">Unwind your way at Riverside</h2>
-                <div class="max-w-[50%] flex place-content-end text-sm">
-                    <p class="max-w-[80%] text-gray-500">
+
+            <div class="flex flex-col md:flex-row justify-between items-start md:items-end mb-8 gap-4">
+                <h2 class="text-3xl md:text-5xl max-w-full md:max-w-[40%] font-medium">
+                    Unwind your way at Riverside
+                </h2>
+                <div class="max-w-full md:max-w-[50%] flex md:place-content-end text-sm">
+                    <p class="max-w-full md:max-w-[80%] text-gray-500">
                         Lorem ipsum dolor sit amet consectetur adipisicing elit. Iure molestiae nemo
                         cupiditate ipsam perferendis voluptas sapiente laborum.
                     </p>
                 </div>
             </div>
 
-            <div class="grid grid-cols-12 gap-8 pt-7">
+            <div class="grid grid-cols-1 md:grid-cols-12 gap-8 pt-7">
 
-                <div class="col-span-5">
+                <div class="col-span-1 md:col-span-5">
                     <div
-                        class="h-[500px] rounded-lg transition-all duration-500 ease-in-out text-white relative before:absolute before:inset-0 before:bg-linear-to-t before:from-black before:via-black/50 before:to-transparent before:opacity-50 before:from-20% before:via-30% before:to-50% overflow-hidden">
+                        class="h-[300px] md:h-[500px] rounded-lg transition-all duration-500 ease-in-out text-white relative 
+                   before:absolute before:inset-0 before:bg-linear-to-t before:from-black before:via-black/50 
+                   before:to-transparent before:opacity-60 before:from-10% before:via-30% before:to-50% overflow-hidden">
                         <NuxtImg :src="currentFacility?.image_url" class="rounded-xl w-full h-full object-cover"
-                            :alt="'Golfing at Riverside Cikeas River' + currentFacility?.title" />
-                        <h3 class="text-4xl font-bold opacity-90 absolute bottom-5 left-2">{{ currentFacility?.title }}
+                            :alt="'Facility: ' + currentFacility?.title" />
+                        <h3 class="text-2xl md:text-4xl font-bold opacity-90 absolute bottom-5 left-4 right-4">
+                            {{ currentFacility?.title }}
                         </h3>
                     </div>
                 </div>
 
-                <div class="col-span-7 py-4 flex flex-col justify-between">
+                <div class="col-span-1 md:col-span-7 flex flex-col justify-between">
 
-                    <div class="flex flex-col gap-2 min-h-[120px]">
+                    <div class="flex flex-col gap-2 min-h-0 md:min-h-[120px] mb-6 md:mb-0">
                         <div :key="currentFacility?.id" class="animate-fade-in">
-                            <h2 class="text-3xl font-semibold">{{ currentFacility?.title }}</h2>
-                            <p class="opacity-90 max-w-[70%] text-sm mt-2 text-gray-600">
+                            <h2 class="hidden md:block text-3xl font-semibold">{{ currentFacility?.title }}</h2>
+                            <p class="opacity-90 max-w-full md:max-w-[70%] text-base md:text-sm mt-2 text-gray-600">
                                 {{ currentFacility?.description }}
                             </p>
                         </div>
                     </div>
 
-                    <div class="grid grid-cols-3 gap-4 pt-10">
+                    <div class="grid grid-cols-3 gap-3 md:gap-4 pt-4 md:pt-10">
                         <div v-for="(item, index) in facilities" :key="item.id" @click="handleManualClick(index)"
-                            @mouseenter="stopAutoplay" @mouseleave="startAutoplay" class="cursor-pointer">
-                            <p class="font-mono text-sm transition-colors pb-3"
-                                :class="activeIndex === index ? 'text-black font-bold' : 'text-gray-400'">
+                            @mouseenter="stopAutoplay" @mouseleave="startAutoplay" class="cursor-pointer group">
+                            <p class="font-mono text-xs md:text-sm transition-colors pb-2 md:pb-3"
+                                :class="activeIndex === index ? 'text-black font-bold' : 'text-gray-400 group-hover:text-gray-600'">
                                 [0{{ index + 1 }}]
                             </p>
 
-                            <div class="h-[200px] rounded-xl transition-all duration-300" :class="[
-                                activeIndex === index ? 'opacity-100 ring-2 ring-offset-2 ring-gray-900 scale-[1.02]' : 'opacity-70 hover:opacity-80'
-                            ]">
+                            <div class="h-[100px] sm:h-[150px] md:h-[200px] rounded-xl transition-all duration-300"
+                                :class="[
+                                    activeIndex === index
+                                        ? 'opacity-100 ring-2 ring-offset-2 ring-gray-900 scale-[1.02]'
+                                        : 'opacity-60 hover:opacity-100'
+                                ]">
                                 <NuxtImg :src="item.image_url" class="rounded-xl w-full h-full object-cover"
                                     :alt="item.title" />
                             </div>

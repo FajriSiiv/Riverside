@@ -8,7 +8,7 @@ const golf_images = [
 </script>
 
 <template>
-    <div class="min-h-screen bg-white font-sans text-gray-900">
+    <div class="min-h-[700px] bg-white font-sans text-gray-900">
 
         <main class="pt-20 md:pt-40 h-[600px] flex items-end">
             <UContainer>
@@ -53,9 +53,9 @@ const golf_images = [
     <div class="pb-10">
         <UCarousel v-slot="{ item }" :autoplay="{ delay: 4000 }" class-names loop wheel-gestures="" :items="golf_images"
             :ui="{
-                item: 'basis-[70%]'
+                item: 'basis-[95%] md:basis-[80%] lg:basis-[70%]'
             }" class=" mx-auto">
-            <NuxtImg :src="item" class="rounded-lg h-[600px] w-full object-cover"
+            <NuxtImg :src="item" class="rounded-lg h-[250px] md:h-[400px] lg:h-[600px] w-full object-cover"
                 :alt="'Golfing at Riverside Cikeas River' + index" />
         </UCarousel>
     </div>
